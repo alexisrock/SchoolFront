@@ -1,0 +1,39 @@
+<div class="row">
+
+
+  <div class="card text-bg-light">
+    <div class="card-header">Materias inscritas</div>
+    <div class="card-body">
+      <div class="row">
+
+
+        @if (materiasByEstudianteResponse.length!==0) {
+        @for (item of materiasByEstudianteResponse; track $index) {
+
+        <div class="col-lg-4 col-md-4 col-ms-4 ">
+          <div class="card border-success  text-center" style="max-width: 18rem;">
+            <div class="card-header bg-transparent border-success  "><b>{{ item.Materia}} </b></div>
+            <div class="card-body ">
+              <i class="bi bi-journal-arrow-down fs-1"></i>
+              <p class="card-text"><b>Profesor:</b> {{item.Profesor}}.</p>
+              <a  class="btn btn-outline-success "  (click)="EstudianteMateria(item.MateriaId)"> Ver</a>
+            </div>
+          </div>
+        </div>
+        }
+        }@else{
+        <p class="card-text">Aun no tiene materias registradas.</p>
+
+        }
+
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+
+
+</div>

@@ -1,0 +1,181 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col col-1 "></div>
+    <div class="col">
+      <div class="card text-bg-light mt-5 mb-2 rounded-4">
+        <div class="card-header rounded-top-4 text-bg-primary">
+
+
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-ms-3  "></div>
+            <div class="col-lg-6 col-md-6 col-ms-6 text-center">
+            </div>
+            <div class="col-lg-3 col-md-3 col-ms-3"></div>
+          </div>
+
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <h1 class="display-6 fw-bold">Crea una cuenta</h1>
+          </div>
+
+          <div class="row mt-2 p-2">
+            <div class="col-lg-3 col-md-2 col-ms-2"></div>
+            <div class="col-lg-7 col-md-8 col-ms-8">
+              <div *ngIf="loading" class="alert alert-success" role="alert">
+                {{message}}
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-2 col-ms-2"></div>
+          </div>
+
+          <form (submit)="SendForm()" [formGroup]="fg">
+            <div class="row mt-2 p-2">
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+              <div class="col-lg-7 col-md-8 col-ms-8">
+                <label for="Nombres" class="form-label">Nombre Completo</label>
+                <input type="text" formControlName="Nombres" class="form-control form-control-lg"
+                  placeholder="Ingrese el nombre completo">
+              </div>
+              <div *ngIf="fg.get('Nombres')?.invalid && fg.get('Nombres')?.touched" class="colorRed">
+                El Nombre es obligatorio.
+              </div>
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+            </div>
+
+
+            <div class="row mt-2 p-2">
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+              <div class="col-lg-7 col-md-8 col-ms-8">
+                <label for="Email" class="form-label">Email</label>
+                <input type="text" formControlName="Email" class="form-control form-control-lg"
+                  placeholder="Correo electrónico">
+              </div>
+              <div *ngIf="fg.get('Email')?.invalid && fg.get('Email')?.touched" class="colorRed">
+                El Email es obligatorio.
+              </div>
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+            </div>
+
+            <div class="row mt-2 p-2">
+              <div class="col-lg-3  col-md-2 col-ms-2"></div>
+              <div class="col-lg-7 col-md-8 col-ms-8 ">
+                <label for="Password" class="form-label">Contraseña</label>
+                <input type="password" formControlName="Password" class=" form-control form-control-lg"
+                  placeholder="Contraseña">
+              </div>
+              <div *ngIf="fg.get('Password')?.invalid && fg.get('Password')?.touched" class="colorRed">
+                La Contraseña es obligatoria.
+              </div>
+              <div class="col-lg-3 col-md-3 col-ms-2"></div>
+            </div>
+
+            <div class="row mt-2 p-2">
+              <div class="col-lg-3  col-md-2 col-ms-2"></div>
+              <div class="col-lg-7 col-md-8 col-ms-8 ">
+                <label for="Passwordconfirm" class="form-label">Confirmar Contraseña</label>
+                <input type="password" formControlName="Passwordconfirm" class=" form-control form-control-lg"
+                  placeholder="Confirmar Contraseña">
+              </div>
+              <div *ngIf="fg.get('Passwordconfirm')?.invalid && fg.get('Passwordconfirm')?.touched" class="colorRed">
+                La Contraseña debe coincidir .
+              </div>
+              <div class="col-lg-3 col-md-3 col-ms-2"></div>
+            </div>
+
+            <div class="row mt-2 p-2">
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+              <div class="col-lg-7 col-md-8 col-ms-8">
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="1" (click)="showOptionsRol(1)"
+                    formControlName="Rol" id="radioDefault1">
+                  <label class="form-check-label" for="radioDefault1">
+                    Profesor
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="2" (click)="showOptionsRol(2)"
+                    formControlName="Rol" id="radioDefault2">
+                  <label class="form-check-label" for="radioDefault2">
+                    Estudiante
+                  </label>
+                </div>
+              </div>
+              <div *ngIf="fg.get('Rol')?.invalid && fg.get('Rol')?.touched" class="colorRed">
+                El Rol es obligatorio.
+              </div>
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+            </div>
+
+
+            @if (optionRol==1) {
+
+            <div class="row mt-2 p-2">
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+              <div class="col-lg-7 col-md-8 col-ms-8">
+                <label for="Profesion" class="form-label">Profesion</label>
+                <input type="text" formControlName="Profesion" class="form-control form-control-lg"
+                  placeholder="Correo electrónico">
+              </div>
+              <div *ngIf="fg.get('Profesion')?.invalid && fg.get('Profesion')?.touched" class="colorRed">
+                La profesion es obligatoria.
+              </div>
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+            </div>
+
+            }@else if(optionRol==2){
+
+            <div class="row mt-2 p-2">
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+              <div class="col-lg-7 col-md-8 col-ms-8">
+                <select class="form-select" aria-label="Default select example" formControlName="Curso"   >
+                  <option selected>Seleccione un curso</option>
+                  @for (item of cursos; track $index) {
+                  <option value="{{item.Id}}">{{item.Descripcion}}</option>
+                  }
+                </select>
+              </div>
+              <div *ngIf="fg.get('Curso')?.invalid && fg.get('Curso')?.touched" class="colorRed">
+                El curso es obligatorio.
+              </div>
+              <div class="col-lg-3 col-md-2 col-ms-2"></div>
+            </div>
+
+
+            }@else{
+
+            }
+
+            <div class="row mt-2 p-2">
+              <div class="col-lg-3  col-md-2 col-ms-2"></div>
+              <div class="col-lg-7 col-md-8 col-ms-8 text-center d-grid ">
+                <input type="submit" class="btn btn-primary btn-lg d-grid  rounded-pill" value="Registrarse  ">
+              </div>
+              <div class="col-lg-3 col-md-3 col-ms-2"></div>
+            </div>
+
+          </form>
+          <div class="row mt-3 p-2">
+            <div class="col-lg-3  col-md-2 col-ms-2"></div>
+            <div class="col-lg-7 col-md-8 col-ms-8 ">
+              <label for="form-label">¿Ya tienes cuenta? </label>&nbsp;&nbsp; <a [routerLink]="['/']"
+                class="form-label"> Iniciar
+                sesión</a>
+
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-ms-2"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col col-1"></div>
+  </div>
+</div>
+
+
+<app-loadding></app-loadding>

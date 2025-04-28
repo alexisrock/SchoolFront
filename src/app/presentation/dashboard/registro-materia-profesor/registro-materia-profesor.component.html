@@ -1,0 +1,49 @@
+
+<div class="row">
+
+
+  <div class="card text-bg-light">
+    <div class="card-header">Registrar materias</div>
+    <div class="card-body">
+
+
+
+      <div class="row mt-2 p-2">
+        <div class="col-lg-3 col-md-2 col-ms-2"></div>
+        <div class="col-lg-7 col-md-8 col-ms-8">
+          <div *ngIf="loading" class="alert alert-success" role="alert">
+            {{message}}
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-2 col-ms-2"></div>
+      </div>
+      <form  >
+
+      <div class="row mb-3">
+        @for (item of materias; track $index) {
+
+          <div class="form-check">
+            <input class="form-check-input"  (change)="toggleMateria(item.Id)"  type="checkbox" value="{{item.Id}}" id="checkChecked" >
+            <label class="form-check-label" for="checkChecked">
+              {{item.Descripcion}}
+            </label>
+          </div>
+        }
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-ms-4">
+          <button type="button" class="btn btn-outline-primary" (click)=" enviarMaterias()">Guardar</button>
+        </div>
+
+
+      </div>
+
+    </form>
+    </div>
+  </div>
+
+
+
+</div>
